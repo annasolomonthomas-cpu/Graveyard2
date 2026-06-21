@@ -1,1 +1,49 @@
 
+// Register the ScrollTrigger plugin with GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+// Timeline to synchronize all scroll-based changes
+let tl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".scroll-wrapper", // Watches the giant track
+        start: "top top",           // Begins as soon as wrapper hits top of screen
+        end: "bottom bottom",       // Ends when wrapper finishes scrolling
+        scrub: true,                // Ties animation tightly to the scrollbar movement
+    }
+});
+
+// 1. Animate the core Typography (The Squeeze & The Flip)
+tl.to(".center-inscription", {
+    letterSpacing: "-8px",  // Smoothly drops from 25px to -8px (The Squeeze)
+    rotation: 90,           // Flips 90 degrees vertically
+    ease: "none"
+}, 0);                      // Starts immediately at timestamp 0
+
+// 2. Change Side Texts & Backgrounds dynamically as you scroll deep
+// Milestone: Entering the 18th Century Wars (Around 40% of scroll depth)
+tl.to("#vasai-narrative", {
+    text: "1739. The Maratha siege cracks the stone walls. The empire has no funds to reinforce the North; its wealth has been redirected west to Brazilian gold.",
+    duration: 0.2
+}, 0.3);
+
+tl.to("#sp-narrative", {
+    text: "1700s. The discovery of gold transforms the backwoods plateau. The wealth of Brazil grows on an economy of forced labor, financing the courts of Lisbon.",
+    duration: 0.2
+}, 0.3);
+
+tl.to(".panel-vasai", { background: "#0a0a0a", duration: 0.3 }, 0.3);
+tl.to(".panel-sp", { background: "#1c140e", duration: 0.3 }, 0.3); // Terracotta shift
+
+// Milestone: Entering the 16th Century Arrival (Around 75% of scroll depth)
+tl.to("#vasai-narrative", {
+    text: "1534. The Treaty of Bassein marks the arrival of the Cross. Jesuit missions construct massive stone colleges. Elite family crests claim sacred church floorboards.",
+    duration: 0.2
+}, 0.7);
+
+tl.to("#sp-narrative", {
+    text: "1554. The Jesuits anchor at Pátio do Colégio. The names and languages of the indigenous Tupi and Guarani are systematically unwritten, dissolved into wet clay.",
+    duration: 0.2
+}, 0.7);
+
+tl.to(".panel-vasai", { background: "#050505", duration: 0.3 }, 0.7);
+tl.to(".panel-sp", { background: "#120b06", duration: 0.3 }, 0.7); // Dark mud dissolve
